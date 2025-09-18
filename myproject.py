@@ -1,1 +1,4 @@
-print("Hello, Git! This is my updated script.")
+def greet(name):
+    return f"Hello, {name}!"
+
+print(greet("Mathesh"))
