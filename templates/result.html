@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        pre { white-space: pre-wrap; word-wrap: break-word; }
+        button { background-color: #007bff; color: white; border: none; padding: 10px 20px; margin: 10px; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analysis Result</h1>
+        <pre id="result">{{ result }}</pre>
+        <button onclick="window.location.href='/analyze'">Back</button>
+        <button onclick="window.location.href='/'">Home</button>
+        <button onclick="window.location.href='/corrected_code?corrected_code={{ corrected_code }}'">View Corrected Code</button>
+        <button onclick="downloadReport()">Download Report</button>
+    </div>
+    <script>
+        function downloadReport() {
+            const result = document.getElementById('result').innerText;
+            const blob = new Blob([result], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'code_analysis_report.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

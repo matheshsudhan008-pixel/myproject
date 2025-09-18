@@ -1,0 +1,4 @@
+    Flask==2.3.3
+Flask-SocketIO==5.3.6
+google-generativeai==0.3.2
+pymongo==4.6.0

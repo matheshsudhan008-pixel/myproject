@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyze Code</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        textarea { width: 100%; height: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        button { background-color: #007bff; color: white; border: none; padding: 10px 20px; margin: 10px; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analyze Your Code</h1>
+        <form method="POST">
+            <label for="code">Enter your code:</label><br>
+            <textarea name="code" id="code" placeholder="Paste your code here..."></textarea><br>
+            <button type="submit">Analyze Code</button>
+        </form>
+        <button onclick="window.location.href='/'">Home</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        const socket = io();
+        socket.on('analysis_start', function(data) {
+            alert(data.message);
+        });
+        socket.on('analysis_complete', function(data) {
+            // Redirect to result page or update here
+            window.location.href = '/result?result=' + encodeURIComponent(data.result) + '&corrected_code=' + encodeURIComponent(data.corrected_code);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Analysis History</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .entry { background: #e9ecef; margin-bottom: 15px; padding: 15px; border-radius: 8px; }
+        pre { white-space: pre-wrap; word-wrap: break-word; background: #fff; padding: 10px; border-radius: 5px; }
+        h2 { margin-top: 0; }
+        button { background-color: #007bff; color: white; border: none; padding: 10px 20px; margin: 10px 0; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analysis History</h1>
+        {% if error %}
+            <p style="color: red;">Error: {{ error }}</p>
+        {% else %}
+            {% if history %}
+                {% for entry in history %}
+                    <div class="entry">
+                        <h2>Date: {{ entry.date }} Time: {{ entry.time }}</h2>
+                        <h3>Programming Language: {{ entry.programming_language }}</h3>
+                        <h4>Code:</h4>
+                        <pre>{{ entry.code }}</pre>
+                        <h4>Analysis Result:</h4>
+                        <pre>{{ entry.result }}</pre>
+                        <h4>Corrected Code:</h4>
+                        <pre>{{ entry.corrected_code }}</pre>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No history found.</p>
+            {% endif %}
+        {% endif %}
+        <button onclick="window.location.href='/'">Home</button>
+    </div>
+</body>
+</html>
